@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Paintball</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>   
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="./shoot.js"></script>
+    <script src="./gameObject.js"></script>
+    <script src="//unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js" target="_blank"></script>
+    
+  </head>
+  <body>
+    <a-scene id="scene">
+
+      <!--Assets-->
+      <a-assets>
+          <a-asset-item 
+            id = "shooter",
+            src = "./Paintball gun.glb"
+          >
+        </a-asset-item>
+      </a-assets>
+
+      <a-entity id = "environment" environment = "preset: poison; skyType: gradient; lighting: point"></a-entity>
+      
+      <a-entity light="type: ambient; color: yellow; intensity:0.5"></a-entity>
+
+      <!--Camera and Cursor-->
+      <a-entity
+        id="camera"
+        camera
+        position="0 1.6 0"
+        wasd-controls
+        look-controls="pointerLockEnabled: false"        
+      >
+      
+      <a-entity
+        id = "weapon"
+        gltf-model = "#shooter"
+        position = "0.5 1 -0.3"
+        rotation = "180 90 180"
+        scale = "0.02 0.02 0.02"
+      ></a-entity>
+
+        <a-cursor color = "black"></a-cursor>        
+      </a-entity>
+
+      <!--Bullets-->
+      <a-entity bullets></a-entity>
+
+      <!--Game Objects-->
+      <a-entity  boxes></a-entity>
+      
+      <!--Ground-->
+      <a-plane
+        id="ground"
+        repeat="5 5"
+        position="0 1 0"
+        rotation="-90 0 0"
+        height="200"
+        width="200"
+        color="#FFFFFF"
+        static-body
+        visible="false"
+      >
+      </a-plane>
+    </a-scene>
+  </body>
+</html>
